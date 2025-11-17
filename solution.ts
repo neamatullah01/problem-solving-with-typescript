@@ -26,7 +26,7 @@ class Person {
     this.age = age;
   }
   getDetails() {
-    return `Name: ${this.name}, Age: ${this.age}`;
+    return `'Name: ${this.name}, Age: ${this.age}'`;
   }
 }
 
@@ -35,6 +35,13 @@ type TItems = {
   rating: number;
 };
 const filterByRating = (items: TItems[]): TItems[] => {
+  items.forEach((item) => {
+    if (item.rating < 0 || item.rating > 5) {
+      throw new Error(
+        `Invalid rating for "${item.title}".Rating must be between 0 and 5.`
+      );
+    }
+  });
   const filterItems = items.filter((item) => item.rating >= 4);
   return filterItems;
 };
