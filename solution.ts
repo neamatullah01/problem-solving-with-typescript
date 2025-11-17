@@ -109,18 +109,64 @@ const printBookDetails = (book: Book): void => {
 type TArray = (string | number)[];
 
 const getUniqueValues = (array1: TArray, array2: TArray): TArray => {
-  const uniqueValues = array2.reduce(
-    (result: TArray, item) => {
-      if (!result.includes(item)) {
-        result.push(item);
+  const result: TArray = [];
+  const checkExists = (arr: TArray, value: string | number): boolean => {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === value) {
+        return true;
       }
-      return result;
-    },
-    [...array1]
-  );
-  return uniqueValues;
+    }
+    return false;
+  };
+
+  for (let i = 0; i < array1.length; i++) {
+    if (!checkExists(result, array1[i])) {
+      result[result.length] = array1[i];
+    }
+  }
+
+  for (let i = 0; i < array2.length; i++) {
+    if (!checkExists(result, array2[i])) {
+      result[result.length] = array2[i];
+    }
+  }
+
+  return result;
 };
 
-const array1 = [1, 2, 3, 4, 5];
-const array2 = [3, 4, 5, 6, 7, 8, 2, 9];
-console.log(getUniqueValues(array1, array2));
+// const array1 = [1, 2, 3, 4, 5];
+// const array2 = [3, 4, 5, 6, 7, 8, 2, 9];
+// console.log(getUniqueValues(array1, array2));
+
+type TProduct = {
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number;
+};
+
+const calculateTotalPrice = (products: TProduct[]): number => {
+  if (products.length === 0) {
+    return 0;
+  }
+  const result = products.reduce((total, item: TProduct) => {
+    const { price, quantity, discount } = item;
+    const subtotal = price * quantity;
+    if (discount !== undefined) {
+      const discountAmount = subtotal * (discount / 100);
+      total += subtotal - discountAmount;
+    } else {
+      total += subtotal;
+    }
+    return total;
+  }, 0);
+  return result;
+};
+
+// const products = [
+//   { name: "Pen", price: 10, quantity: 2 },
+//   { name: "Notebook", price: 25, quantity: 3, discount: 10 },
+//   { name: "Bag", price: 50, quantity: 1, discount: 20 },
+// ];
+
+// console.log(calculateTotalPrice(products));
