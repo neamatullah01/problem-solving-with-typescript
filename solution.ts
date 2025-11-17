@@ -10,10 +10,6 @@ const formatValue = (
   }
 };
 
-// console.log(formatValue("helloooo"));
-// console.log(formatValue(7));
-// console.log(formatValue(false));
-
 const getLength = (value: string | (number | string)[]): number | undefined => {
   if (typeof value === "string") {
     return value.length;
@@ -21,9 +17,6 @@ const getLength = (value: string | (number | string)[]): number | undefined => {
     return value.length;
   }
 };
-
-// console.log(getLength("typescriptNeamat"));
-// console.log(getLength(["abs", "full", 60]));
 
 class Person {
   name: string;
@@ -37,12 +30,6 @@ class Person {
   }
 }
 
-// const person1 = new Person("John Doe", 30);
-// console.log(person1.getDetails());
-
-// const person2 = new Person("Alice", 25);
-// console.log(person2.getDetails());
-
 type TItems = {
   title: string;
   rating: number;
@@ -51,17 +38,6 @@ const filterByRating = (items: TItems[]): TItems[] => {
   const filterItems = items.filter((item) => item.rating >= 4);
   return filterItems;
 };
-
-// const books = [
-//   { title: "Book A", rating: 4.5 },
-//   { title: "Book B", rating: 3.2 },
-//   { title: "Book C", rating: 5.0 },
-//   { title: "Book C", rating: 4.8 },
-//   { title: "Book C", rating: 2.8 },
-// ];
-// console.log(books);
-
-// console.log(filterByRating(books));
 
 type TUser = {
   id: number;
@@ -73,14 +49,6 @@ const filterActiveUsers = (users: TUser[]): TUser[] => {
   const filteredUser = users.filter((user) => user.isActive === true);
   return filteredUser;
 };
-
-// const users = [
-//   { id: 1, name: "Rakib", email: "rakib@example.com", isActive: true },
-//   { id: 2, name: "Asha", email: "asha@example.com", isActive: false },
-//   { id: 3, name: "Rumi", email: "rumi@example.com", isActive: true },
-// ];
-
-// console.log(filterActiveUsers(users));
 
 interface Book {
   title: string;
@@ -96,15 +64,6 @@ const printBookDetails = (book: Book): void => {
     }, Available: ${book.isAvailable === true ? "Yes" : "No"}`
   );
 };
-
-// const myBook: Book = {
-//   title: "The Great Gatsby",
-//   author: "F. Scott Fitzgerald",
-//   publishedYear: 1925,
-//   isAvailable: true,
-// };
-
-// printBookDetails(myBook);
 
 type TArray = (string | number)[];
 
@@ -134,10 +93,6 @@ const getUniqueValues = (array1: TArray, array2: TArray): TArray => {
   return result;
 };
 
-// const array1 = [1, 2, 3, 4, 5];
-// const array2 = [3, 4, 5, 6, 7, 8, 2, 9];
-// console.log(getUniqueValues(array1, array2));
-
 type TProduct = {
   name: string;
   price: number;
@@ -162,11 +117,3 @@ const calculateTotalPrice = (products: TProduct[]): number => {
   }, 0);
   return result;
 };
-
-// const products = [
-//   { name: "Pen", price: 10, quantity: 2 },
-//   { name: "Notebook", price: 25, quantity: 3, discount: 10 },
-//   { name: "Bag", price: 50, quantity: 1, discount: 20 },
-// ];
-
-// console.log(calculateTotalPrice(products));
